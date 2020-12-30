@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+     <div id="major-div">
+      <div class="outer-div">
+        <h1 id="heading">
+            ToDo App
+        </h1>
+       <div>
+         <form action="/create-app" method="POST" id="form1">
+           <div class="add-content">
+            <p>Add Discription</p>
+            <input type="text" name="name" placeholder="what do you want to add?" required>
+           </div>
+           <div class="category">
+               <p>CATEGORY</p>
+                <select id="select2" name="options">
+                        <option selected>Choose a category</option>
+                        <option>Personal</option>
+                        <option>Work</option>
+                        <option>School</option>
+                        <option>Cleaning</option>
+                        <option>Other</option>
+                </select>
+           </div>
+           <div class="date-making">
+        
+                    <label>Date:</label>
+                    <input type="date" name="dates"><br>
+                
+                
+           </div>
+           <button type="submit" id="button1"><i class="fas fa-plus"></i>ADD TASK</button>
+           
+          
+           <button type="submit"  id="delete-button">
+              
+                  
+             <div id="outer">
+                <p><a href="#">GO BACK</a></p>
+                <p>Click Below to delete these tasks</p>
+                <%for(let i of todo_list){%>
+                 <p>
+                   <a href="/delete-app/?id=<%= i._id%>" id="delete">
+                     delete***** <%= i.name%> (via Description)
+                  </a>
+                  </p>
+                 <%}%>
+             </div>
+                 <i class="fas fa-trash-alt">
+                 </i>DELETE TASK - >
+                 <a href="#outer">
+                  X
+                </a>
+           </button>
+         <div>
+           
+                <% for(let i of todo_list){%>
+                    <li class="link-do">
+                     <div class="details">
+                      <div class="checkbox-type">
+                       <a href="/delete-app/?id=<%= i._id%>" id="delete">     
+                        <form action="/delete-app" method="POST">
+                            <input type='checkbox'>
+                        </form>
+                       </a>
+                      </div>
+                        <div class="first">
+                          <h4> <%= i.name%></h4>
+                          <p><%=i.dates%></p>
+                         </div>
+                        <div class="no2">
+                          <button type="submit" id="button2"><%= i.options%></button>
+                        </div>
+                       
+                      </div>
+                    </li>
+
+                <%}%>
+           
+
+        </div>
+    </form>
+        
+       </div>
+ </div>
+    </body>
+</html>
